@@ -131,6 +131,22 @@ class AlgoliaIndex extends Model
     }
 
     /**
+     * Adds or removes the supplied element from the index.
+     *
+     * @param $elements array
+     *
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function deIndexElements($elements)
+    {
+        foreach ($elements as $element) {
+            if ($this->elementType === get_class($element)) {
+                $this->deindexElement($element);
+            }
+        }
+    }
+
+    /**
      * @param $element
      */
     protected function deindexElement($element)
